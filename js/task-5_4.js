@@ -1,43 +1,13 @@
-'use strict';
-// Напиши класс StringBuilder. На вход он получает один параметр -
-// строку, которую записывает в свойство _value.
+const players = [
+  { name: 'Манго', playtime: 1270, gamesPlayed: 4 },
+  { name: 'Поли', playtime: 469, gamesPlayed: 2 },
+  { name: 'Аякс', playtime: 690, gamesPlayed: 3 },
+  { name: 'Киви', playtime: 241, gamesPlayed: 1 },
+];
+// Пиши код ниже этой строки
 
-// Добавь классу следующий функционал:
+const totalAveragePlaytimePerGame = players.reduce((totalTime, player) => {
+  return (totalTime += player.playtime / player.gamesPlayed);
+}, 0);
 
-// Геттер value - возвращает текущее значение поля _value
-// Метод append(str) - получает парметр str (строку) и добавляет ее в конец _value
-// Метод prepend(str) - получает парметр str (строку) и добавляет ее в начало value
-// Метод pad(str) - получает парметр str (строку) и добавляет ее в начало и в конец _value
-
-class StringBuilder {
-  constructor(value) {
-    this._value = value;
-  }
-
-  get value() {
-    return this._value;
-  }
-
-  append(str) {
-    this._value += str;
-  }
-
-  prepend(str) {
-    this._value = str + this._value;
-  }
-
-  pad(str) {
-    this._value = str + this._value + str;
-  }
-}
-
-const builder = new StringBuilder('.');
-
-builder.append('^');
-console.log(builder.value); // '.^'
-
-builder.prepend('^');
-console.log(builder.value); // '^.^'
-
-builder.pad('=');
-console.log(builder.value); // '=^.^='
+console.log(totalAveragePlaytimePerGame);

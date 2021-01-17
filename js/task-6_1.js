@@ -71,10 +71,143 @@ import users from './users.js';
 // Получить массив всех умений всех пользователей (поле skills), при этом не должно быть повторяющихся умений
 // и они должны быть отсортированы в алфавитном порядке.
 
-const getSortedUniqueSkills = users => {
-  const result = users.flatMap(user => user.skills).sort();
-  return result.filter((item, index) => result.indexOf(item) === index);
+// const getSortedUniqueSkills = users => {
+//   const result = users.flatMap(user => user.skills).sort();
+//   return result.filter((item, index) => result.indexOf(item) === index);
+// };
+
+// console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
+
+// Привет! Очень хорошо сделать деструктуризацию аргументов
+// // Пример:
+// // users.filter(user => user.eyeColor === color);
+// // И с деструтуризацией
+// // users.filter(({ eyeColor }) => eyeColor === color);
+
+// Task 10 flatMap попробуй без него.
+// djn nfr
+// [].reduce().filter(),sort()
+
+//=======================================
+
+// function filterArray(numbers, value) {
+
+//   return numbers.forEach(function (number) {
+//     if (number > value) {
+//       filteredNumbers.push(number);
+//     }
+//   });
+
+// }
+
+// console.log(filterArray([1, 2, 3, 4, 5], 3));
+
+//================================
+
+// const LOW_SCORE = 50;
+// const HIGH_SCORE = 80;
+// const students = [
+//   { name: 'Манго', score: 83 },
+//   { name: 'Поли', score: 59 },
+//   { name: 'Аякс', score: 37 },
+//   { name: 'Киви', score: 94 },
+//   { name: 'Хьюстон', score: 64 },
+// ];
+
+// const best = students.filter(({ score }) => score > 80);
+// const worst = students.filter(({ score }) => score < 50);
+// const average = students.filter(({ score }) => score >= 50 && score <= 80);
+
+// console.table(best);
+// console.table(worst);
+// console.table(average);
+
+//==============================================
+const userses = [
+  {
+    name: 'Moore Hensley',
+    email: 'moorehensley@indexia.com',
+    eyeColor: 'blue',
+    friends: ['Sharron Pace'],
+    isActive: false,
+    balance: 2811,
+    gender: 'male',
+    age: 37,
+  },
+  {
+    name: 'Sharlene Bush',
+    email: 'sharlenebush@tubesys.com',
+    eyeColor: 'blue',
+    friends: ['Briana Decker', 'Sharron Pace'],
+    isActive: true,
+    balance: 3821,
+    gender: 'female',
+    age: 34,
+  },
+  {
+    name: 'Ross Vazquez',
+    email: 'rossvazquez@xinware.com',
+    eyeColor: 'green',
+    friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+    isActive: false,
+    balance: 3793,
+    gender: 'male',
+    age: 24,
+  },
+  {
+    name: 'Elma Head',
+    email: 'elmahead@omatom.com',
+    eyeColor: 'green',
+    friends: ['Goldie Gentry', 'Aisha Tran'],
+    isActive: true,
+    balance: 2278,
+    gender: 'female',
+    age: 21,
+  },
+  {
+    name: 'Carey Barr',
+    email: 'careybarr@nurali.com',
+    eyeColor: 'blue',
+    friends: ['Jordan Sampson', 'Eddie Strong'],
+    isActive: true,
+    balance: 3951,
+    gender: 'male',
+    age: 27,
+  },
+  {
+    name: 'Blackburn Dotson',
+    email: 'blackburndotson@furnigeer.com',
+    eyeColor: 'brown',
+    friends: ['Jacklyn Lucas', 'Linda Chapman'],
+    isActive: false,
+    balance: 1498,
+    gender: 'male',
+    age: 38,
+  },
+  {
+    name: 'Sheree Anthony',
+    email: 'shereeanthony@kog.com',
+    eyeColor: 'brown',
+    friends: ['Goldie Gentry', 'Briana Decker'],
+    isActive: true,
+    balance: 2764,
+    gender: 'female',
+    age: 39,
+  },
+];
+// const getFriends = userses => {
+//   const allFriends = userses.flatMap(({ friends }) => friends);
+//   return allFriends.filter(
+//     (friend, index) => allFriends.indexOf(friend) === index,
+//   );
+// };
+// console.log(getFriends(userses));
+
+const getTotalBalanceByGender = (userses, gender) => {
+  return userses
+    .filter(user => user.gender === gender)
+    .reduce((total, user) => total + user.balance, 0);
 };
 
-console.log(getSortedUniqueSkills(users));
-// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
+console.table(getTotalBalanceByGender(userses, 'male'));
